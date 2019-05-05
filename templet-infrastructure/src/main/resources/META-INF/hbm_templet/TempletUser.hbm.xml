@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class name="com.ecpss.templet.domain.user.TempletUser" dynamic-update="true" table="TEMPLET_USER" batch-size="50">
+       <comment>红包信息</comment>
+        <id name="id" access="property">
+            <column name="id" not-null="true">
+                <comment>主键</comment>
+            </column>
+            <generator class="sequence">
+                <param name="sequence">TEM_USER</param>
+            </generator>
+        </id>
+        <discriminator column="type" type="java.lang.String" not-null="true"/>
+        <version name="version" type="long">
+            <column name="version" default="0" not-null="true">
+                <comment>版本号</comment>
+            </column>
+        </version>
+       <property name="createTime" type="timestamp" update="false">
+            <column name="create_time" not-null="true" default="systimestamp">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <property name="updateTime" type="timestamp">
+            <column name="update_time" not-null="true" default="systimestamp">
+                <comment>更新时间</comment>
+            </column>
+        </property>
+        <property name="userNo" >
+            <column name="user_no">
+                <comment>订单号</comment>
+            </column>
+        </property>
+        <property name="userName" >
+            <column name="user_name" not-null="true">
+                <comment>商户数字账号</comment>
+            </column>
+        </property>
+
+     </class>
+</hibernate-mapping>
